@@ -1,3 +1,4 @@
+-- https://www.hammerspoon.org/Spoons/ClipboardTool.html 
 ClipboardTool = hs.loadSpoon('ClipboardTool')
 ClipboardTool.show_in_menubar = false
 ClipboardTool.show_copied_alert = false
