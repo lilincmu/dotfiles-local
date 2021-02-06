@@ -18,7 +18,7 @@
                     {
                         "manipulators": [
                             {
-                                "description": "Change caps_lock to command+control+option+shift.",
+                                "description": "Change caps_lock to command+control+option+shift. Escape if no other key used.",
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": {
@@ -35,6 +35,16 @@
                                             "left_control",
                                             "left_option"
                                         ]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape",
+                                        "modifiers": {
+                                            "optional": [
+                                                "any"
+                                            ]
+                                        }
                                     }
                                 ],
                                 "type": "basic"
