@@ -1,6 +1,8 @@
 # Shortcuts
 ## Window
 - hyper + f: fullscreen
+- hyper + =: increase window size
+- hyper + -: increase window size
 - hyper + -> : move window right
 - hyper + <- : move window left
 
