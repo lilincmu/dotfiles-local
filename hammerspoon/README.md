@@ -7,8 +7,11 @@
 - hyper + =: increase window size horizontally
 - hyper + -: decrease window size horizontally
 - hyper + hjkl: move window
-- hyper + -> : move window to right screen
-- hyper + <- : move window to left screen
+
+- hyper + -> : move window to right space
+- hyper + <- : move window to left space
+- hyper + ' : move window to right screen
+- hyper + ; : move window to left screen
 
 ## App
 - hyper + c: focus Google Chrome

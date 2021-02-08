@@ -64,11 +64,3 @@ for i, move in ipairs(moves) do
         win:setFrame(f)
     end)
 end
-
--- move between displays
-hs.hotkey.bind(HYPER, 'right', function()
-    hs.window.focusedWindow():moveOneScreenEast()
-end)
-hs.hotkey.bind(HYPER, 'left', function()
-    hs.window.focusedWindow():moveOneScreenWest()
-end)
