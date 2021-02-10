@@ -14,9 +14,16 @@
 - hyper + ; : move window to left screen
 
 ## App
-- hyper + c: focus Google Chrome
+- hyper + g: focus Google Chrome
 - hyper + t: focus Terminal
-- hyper + a: focus Finder
+- hyper + d: focus Finder
+- hyper + z: focus Zoom
+- hyper + s: focus Slack
+- hyper + p: focus Postman
+- hyper + i: focus IntelliJ IDEA
+- hyper + a: focus Atom
+- hyper + o: focus Microsoft OneNote
+- hyper + c: focus Visual Studio Code
 
 ## Clipboard
 - hyper + v: clipboard modal
