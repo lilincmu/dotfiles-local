@@ -2,9 +2,40 @@ local STEP = 20
 
 hs.window.animationDuration = 0
 
--- full screen
+-- switch between sizes
+windowFrames = {}
+local sizes = {
+    {1, 1},
+    {0.8, 0.8},
+    {0.5, 1},
+    {1, 0.5},
+    {0.5, 0.5},
+}
 hs.hotkey.bind(HYPER, 'f', function()
-    hs.window.focusedWindow():maximize()
+    local win = hs.window.focusedWindow()
+    local frames = windowFrames[win:id()]
+    if frames ~= nil then
+        local firstFrame = frames[1]
+        -- check if window hasn't been resized
+        if (win:frame():equals(firstFrame)) then
+            table.remove(frames, 1)
+            table.insert(frames, firstFrame)
+            win:setFrame(frames[1])
+            return
+        end
+    end
+
+    local oldFrame = hs.geometry.copy(win:frame())
+    win:maximize()
+    frames = {}
+    for i, size in ipairs(sizes) do
+        local frame = hs.geometry.copy(win:frame())
+        frame.w = frame.w * size[1]
+        frame.h = frame.h * size[2]
+        table.insert(frames, frame)
+    end
+    table.insert(frames, oldFrame)
+    windowFrames[win:id()] = frames
 end)
 
 -- resize window

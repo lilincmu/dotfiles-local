@@ -1,6 +1,6 @@
 # Shortcuts
 ## Window
-- hyper + f: fullscreen
+- hyper + f: switch between fullscreen, 80 percent, half sizes, etc.
 
 - hyper + ]: increase window size vertically
 - hyper + [: decrease window size vertically
