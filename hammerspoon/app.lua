@@ -9,6 +9,7 @@ local apps = {
   { key = "p", app = "Postman" },
   { key = "z", app = "zoom.us" },
   { key = "c", app = "Visual Studio Code" },
+  { key = "r", app = "Calendar" },
 }
 
 for i, object in ipairs(apps) do

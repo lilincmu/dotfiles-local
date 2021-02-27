@@ -24,6 +24,7 @@
 - hyper + a: focus Atom
 - hyper + o: focus Microsoft OneNote
 - hyper + c: focus Visual Studio Code
+- hyper + r: focus Calendar
 
 ## Clipboard
 - hyper + v: clipboard modal
