@@ -37,7 +37,14 @@ menu = {
       menuItem.checked = enabled
       reloadMenu()
     end
-  }
+  },
+  {
+    title = "-" -- separator
+  },
+  {
+    title = "Auto Layout",
+    fn = autoLayout
+  },
 }
 
 reloadMenu()

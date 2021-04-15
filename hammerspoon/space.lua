@@ -76,3 +76,49 @@ end)
 hs.hotkey.bind(HYPER, ';', function()
     hs.window.focusedWindow():moveOneScreenWest()
 end)
+
+local function getScreenSpaces(name)
+    local screenUUID = hs.screen.find(name):getUUID()
+    return spaces.layout()[screenUUID]
+end
+
+local function applyLayout(layout)
+    for _, entry in ipairs(layout) do
+        local appName = entry[1]
+        local screenName = entry[2]
+        local spaceNum = entry[3]
+        local rect = entry[4]
+
+        local screenSpaces = getScreenSpaces(screenName)
+        local spaceId = screenSpaces[spaceNum] and screenSpaces[spaceNum] or screenSpaces[#screenSpaces]
+        local app = hs.application.get(appName)
+        if app == nil then
+            goto continue
+        end
+
+        local win = app:mainWindow()
+        win:spacesMoveTo(spaceId)
+
+        local frame = hs.geometry.copy(win:screen():frame())
+        if rect:type() == 'rect' then
+            frame.x = frame.x + rect.x
+            frame.y = frame.y + rect.y
+            frame.w = rect.w
+            frame.h = rect.h
+        elseif rect:type() == 'unitrect' then
+            frame.w = frame.w * rect.w
+            frame.h = frame.h * rect.h
+        end
+        win:setFrame(frame)
+
+        ::continue::
+    end
+end
+
+function autoLayout()
+    if getScreenSpaces(MACBOOK_MONITOR) and getScreenSpaces(MIDDLE_MONITOR) then
+        applyLayout(LAYOUT_HOME)
+    else
+        applyLayout(LAYOUT_LAPTOP)
+    end
+end
