@@ -115,6 +115,7 @@ local function applyLayout(layout)
     end
 end
 
+-- ref: https://github.com/anishathalye/dotfiles-local/blob/mac/hammerspoon/layout.lua
 function autoLayout()
     if getScreenSpaces(MACBOOK_MONITOR) and getScreenSpaces(MIDDLE_MONITOR) then
         applyLayout(LAYOUT_HOME)

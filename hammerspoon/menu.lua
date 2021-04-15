@@ -1,3 +1,4 @@
+-- ref: https://github.com/anishathalye/dotfiles-local/blob/mac/hammerspoon/util.lua
 utilMenu = hs.menubar.new()
 
 local icon = [[
