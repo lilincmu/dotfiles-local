@@ -106,8 +106,10 @@ local function applyLayout(layout)
             frame.w = rect.w
             frame.h = rect.h
         elseif rect:type() == 'unitrect' then
-            frame.w = frame.w * rect.w
-            frame.h = frame.h * rect.h
+            frame.x = frame.x + rect.x * frame.w
+            frame.y = frame.y + rect.y * frame.h
+            frame.w = frame.w * (rect.w - rect.x)
+            frame.h = frame.h * (rect.h - rect.y)
         end
         win:setFrame(frame)
 
@@ -117,7 +119,9 @@ end
 
 -- ref: https://github.com/anishathalye/dotfiles-local/blob/mac/hammerspoon/layout.lua
 function autoLayout()
-    if getScreenSpaces(MACBOOK_MONITOR) and getScreenSpaces(MIDDLE_MONITOR) then
+    if getScreenSpaces(LEFT_MONITOR) then
+        applyLayout(LAYOUT_OFFICE)
+    elseif getScreenSpaces(MIDDLE_MONITOR) then
         applyLayout(LAYOUT_HOME)
     else
         applyLayout(LAYOUT_LAPTOP)
