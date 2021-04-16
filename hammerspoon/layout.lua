@@ -23,7 +23,7 @@ LAYOUT_HOME = {
 LAYOUT_LAPTOP = {
     {'Calendar', MACBOOK_MONITOR, 1, hs.geometry.unitrect(0, 0, 1, 1)},
     {'Google Chrome', MACBOOK_MONITOR, 2, hs.geometry.unitrect(0, 0, 1, 1)},
-    {'Terminal', MACBOOK_MONITOR, 2, hs.geometry.rect(150, 0, 650, 800)},
+    {'Terminal', MACBOOK_MONITOR, 2, hs.geometry.rect(300, 0, 650, 750)},
     {'Code', MACBOOK_MONITOR, 3, hs.geometry.unitrect(0, 0, 1, 1)},
     {'Microsoft OneNote', MACBOOK_MONITOR, 4, hs.geometry.unitrect(0, 0, 1, 1)},
 }
