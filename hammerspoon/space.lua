@@ -78,7 +78,11 @@ hs.hotkey.bind(HYPER, ';', function()
 end)
 
 local function getScreenSpaces(name)
-    local screenUUID = hs.screen.find(name):getUUID()
+    local screen = hs.screen.find(name)
+    if screen == nil then
+        return
+    end
+    local screenUUID = screen:getUUID()
     return spaces.layout()[screenUUID]
 end
 
