@@ -78,6 +78,7 @@ hs.hotkey.bind(HYPER, ';', function()
 end)
 
 local function applyLayout(layout)
+    local focusedWindow = hs.window.focusedWindow()
     for _, entry in ipairs(layout) do
         local appName = entry[1]
         local screenName = entry[2]
@@ -116,6 +117,7 @@ local function applyLayout(layout)
 
         ::continue::
     end
+    focusedWindow:focus()
 end
 
 -- ref: https://github.com/anishathalye/dotfiles-local/blob/mac/hammerspoon/layout.lua
