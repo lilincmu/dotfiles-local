@@ -77,15 +77,6 @@ hs.hotkey.bind(HYPER, ';', function()
     hs.window.focusedWindow():moveOneScreenWest()
 end)
 
-local function getScreenSpaces(name)
-    local screen = hs.screen.find(name)
-    if screen == nil then
-        return
-    end
-    local screenUUID = screen:getUUID()
-    return spaces.layout()[screenUUID]
-end
-
 local function applyLayout(layout)
     for _, entry in ipairs(layout) do
         local appName = entry[1]
@@ -93,14 +84,20 @@ local function applyLayout(layout)
         local spaceNum = entry[3]
         local rect = entry[4]
 
-        local screenSpaces = getScreenSpaces(screenName)
-        local spaceId = screenSpaces[spaceNum] and screenSpaces[spaceNum] or screenSpaces[#screenSpaces]
         local app = hs.application.get(appName)
         if app == nil then
             goto continue
         end
+        
+        local screen = hs.screen.find(screenName)
+        if screen == nil then
+            goto continue
+        end
+        local screenSpaces = spaces.layout()[screen:getUUID()]
+        local spaceId = screenSpaces[spaceNum] and screenSpaces[spaceNum] or screenSpaces[#screenSpaces]
 
         local win = app:mainWindow()
+        win:moveToScreen(screen)
         win:spacesMoveTo(spaceId)
 
         local frame = hs.geometry.copy(win:screen():frame())
@@ -123,9 +120,9 @@ end
 
 -- ref: https://github.com/anishathalye/dotfiles-local/blob/mac/hammerspoon/layout.lua
 function autoLayout()
-    if getScreenSpaces(LEFT_MONITOR) then
+    if hs.screen.find(LEFT_MONITOR) then
         applyLayout(LAYOUT_OFFICE)
-    elseif getScreenSpaces(MIDDLE_MONITOR) then
+    elseif hs.screen.find(MIDDLE_MONITOR) then
         applyLayout(LAYOUT_HOME)
     else
         applyLayout(LAYOUT_LAPTOP)
