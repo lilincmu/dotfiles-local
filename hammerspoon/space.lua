@@ -97,23 +97,25 @@ local function applyLayout(layout)
         local screenSpaces = spaces.layout()[screen:getUUID()]
         local spaceId = screenSpaces[spaceNum] and screenSpaces[spaceNum] or screenSpaces[#screenSpaces]
 
-        local win = app:mainWindow()
-        win:moveToScreen(screen)
-        win:spacesMoveTo(spaceId)
+        local windowsOfApp = app:allWindows()
+        for _, win in ipairs(windowsOfApp) do
+            win:moveToScreen(screen)
+            win:spacesMoveTo(spaceId)
 
-        local frame = hs.geometry.copy(win:screen():frame())
-        if rect:type() == 'rect' then
-            frame.x = frame.x + rect.x
-            frame.y = frame.y + rect.y
-            frame.w = rect.w
-            frame.h = rect.h
-        elseif rect:type() == 'unitrect' then
-            frame.x = frame.x + rect.x * frame.w
-            frame.y = frame.y + rect.y * frame.h
-            frame.w = frame.w * (rect.w - rect.x)
-            frame.h = frame.h * (rect.h - rect.y)
+            local frame = hs.geometry.copy(win:screen():frame())
+            if rect:type() == 'rect' then
+                frame.x = frame.x + rect.x
+                frame.y = frame.y + rect.y
+                frame.w = rect.w
+                frame.h = rect.h
+            elseif rect:type() == 'unitrect' then
+                frame.x = frame.x + rect.x * frame.w
+                frame.y = frame.y + rect.y * frame.h
+                frame.w = frame.w * (rect.w - rect.x)
+                frame.h = frame.h * (rect.h - rect.y)
+            end
+            win:setFrame(frame)
         end
-        win:setFrame(frame)
 
         ::continue::
     end
