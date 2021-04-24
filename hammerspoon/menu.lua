@@ -26,7 +26,7 @@ local reloadMenu = function() utilMenu:setMenu(menu) end
 menu = {
   {
     title = "Caffeinate",
-    checked = false,
+    checked = hs.caffeinate.toggle('displayIdle'), -- set default to true
     fn = function(modifiers, menuItem)
       local enabled = hs.caffeinate.toggle('displayIdle')
       if enabled then
