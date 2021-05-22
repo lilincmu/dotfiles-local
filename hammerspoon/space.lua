@@ -132,3 +132,7 @@ function autoLayout()
         applyLayout(LAYOUT_LAPTOP)
     end
 end
+
+hs.hotkey.bind(HYPER, "1", function()
+    autoLayout()
+end)
