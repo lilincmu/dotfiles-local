@@ -38,6 +38,19 @@ hs.hotkey.bind(HYPER, 'f', function()
     windowFrames[win:id()] = frames
 end)
 
+-- center window
+hs.hotkey.bind(HYPER, '\\', function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local max = win:screen():frame()
+    log(f)
+    log(max)
+
+    f.x = max.x + (max.w - f.w) / 2
+    f.y = max.y + (max.h - f.h) / 2
+    win:setFrame(f)
+end)
+
 -- resize window
 local resizes = {{
     key = "]",
