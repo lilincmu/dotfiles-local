@@ -25,13 +25,12 @@ local function getAlertStyle()
     local textSize = screenHeight * 0.4
     -- hs.styledtext.fontNamesWithTraits(hs.styledtext.fontTraits.fixedPitchFont)
     -- Monaco, Menlo-Regular, AppleBraille, AppleColorEmoji, MesloLGSNerdFontCompleteM-Regular
-    local textFont = hs.styledtext.validFont('Monaco')
-        and 'Monaco' or 'Menlo-Regular'
+    local textFont = hs.styledtext.validFont('Monaco') and 'Monaco' or 'Menlo-Regular'
     return {
         fillColor = transparent,
         strokeColor = transparent, -- border color
         atScreenEdge = 1, -- screen top
-        padding = (screenHeight - textSize) / 2,
+        padding = screenHeight * 0.25,
         textSize = textSize,
         textFont = textFont,
         textColor = textColor,
