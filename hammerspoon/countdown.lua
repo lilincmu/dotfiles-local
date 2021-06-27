@@ -7,7 +7,7 @@ local transparent = {
 }
 local black = {
     white = 0,
-    alpha = 1,
+    alpha = 0.97,
 }
 local textColor = {
     hex = '#33FF00', -- green
@@ -57,6 +57,8 @@ local function countdown(seconds, id)
             countdown(seconds - 1, id)
         end)
         timer:start()
+    else
+        hs.alert.closeAll()
     end
 end
 
