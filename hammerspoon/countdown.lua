@@ -1,10 +1,17 @@
+local totalDuration = 25 * 60 -- 25 minutes
+local alertDuration = 1.1 -- avoid blinking
+
 local transparent = {
     white = 0,
     alpha = 0,
 }
+local black = {
+    white = 0,
+    alpha = 1,
+}
 local textColor = {
     hex = '#33FF00', -- green
-    alpha = 0.8,
+    alpha = 1,
 }
 
 local function getAlertText(seconds)
@@ -31,14 +38,22 @@ local function getAlertStyle()
     }
 end
 
+local function getBackgroundStyle()
+    return {
+        fillColor = black,
+        strokeColor = transparent,
+        padding = hs.screen.mainScreen():frame().h,
+        atScreenEdge = 1,
+    }
+end
+
 local function countdown(seconds, id)
     if COUNTDOWN_LATEST_ID ~= id then
         return
     end
 
-    hs.alert.closeAll()
     if seconds >= 0 then
-        hs.alert.show(getAlertText(seconds), getAlertStyle(), nil, 1)
+        hs.alert.show(getAlertText(seconds), getAlertStyle(), alertDuration)
         local timer = hs.timer.doAfter(1, function()
             countdown(seconds - 1, id)
         end)
@@ -49,8 +64,11 @@ end
 COUNTDOWN_LATEST_ID = 0
 
 function startCountdown()
+    -- add black background
+    hs.alert.show("", getBackgroundStyle(), totalDuration + alertDuration)
+
     COUNTDOWN_LATEST_ID = hs.host.uuid()
-    countdown(25 * 60, COUNTDOWN_LATEST_ID)
+    countdown(totalDuration, COUNTDOWN_LATEST_ID)
 end
 
 function stopCountdown()
@@ -59,3 +77,4 @@ function stopCountdown()
 end
 
 hs.hotkey.bind(HYPER, "2", startCountdown)
+hs.hotkey.bind(HYPER, "3", stopCountdown)

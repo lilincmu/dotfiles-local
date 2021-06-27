@@ -28,3 +28,8 @@
 
 ## Clipboard
 - hyper + v: clipboard modal
+
+## Misc
+- hyper + 1: auto layout
+- hyper + 2: start pomodoro timer
+- hyper + 3: stop pomodoro timer
