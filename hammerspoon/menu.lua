@@ -46,6 +46,21 @@ menu = {
     title = "Auto Layout",
     fn = autoLayout
   },
+  {
+    title = "-" -- separator
+  },
+  {
+    title = "Start Countdown",
+    fn = function()
+      startCountdown()
+    end
+  },
+  {
+    title = "Stop Countdown",
+    fn = function()
+      stopCountdown()
+    end
+  },
 }
 
 reloadMenu()
