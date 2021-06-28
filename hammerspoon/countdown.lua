@@ -52,7 +52,7 @@ local function countdown(seconds, id)
     end
 
     if seconds >= 0 then
-        hs.alert.show(getAlertText(seconds), getAlertStyle(), alertDuration)
+        hs.alert.show(getAlertText(seconds), getAlertStyle(), COUNTDOWN_LATEST_SCREEN, alertDuration)
         local timer = hs.timer.doAfter(1, function()
             countdown(seconds - 1, id)
         end)
@@ -62,13 +62,15 @@ local function countdown(seconds, id)
     end
 end
 
-COUNTDOWN_LATEST_ID = 0
+COUNTDOWN_LATEST_ID = nil
+COUNTDOWN_LATEST_SCREEN = nil
 
 function startCountdown()
-    -- add black background
-    hs.alert.show("", getBackgroundStyle(), 'inf')
-
     COUNTDOWN_LATEST_ID = hs.host.uuid()
+    COUNTDOWN_LATEST_SCREEN = hs.screen.mainScreen()
+
+    -- add black background
+    hs.alert.show("", getBackgroundStyle(), COUNTDOWN_LATEST_SCREEN, 'inf')
     countdown(totalDuration, COUNTDOWN_LATEST_ID)
 end
 
