@@ -66,7 +66,7 @@ COUNTDOWN_LATEST_ID = 0
 
 function startCountdown()
     -- add black background
-    hs.alert.show("", getBackgroundStyle(), totalDuration + alertDuration)
+    hs.alert.show("", getBackgroundStyle(), 'inf')
 
     COUNTDOWN_LATEST_ID = hs.host.uuid()
     countdown(totalDuration, COUNTDOWN_LATEST_ID)
