@@ -21,7 +21,7 @@ local function getAlertText(seconds)
 end
 
 local function getAlertStyle()
-    local screenHeight = hs.screen.mainScreen():frame().h
+    local screenHeight = COUNTDOWN_LATEST_SCREEN:frame().h
     local textSize = screenHeight * 0.4
     -- hs.styledtext.fontNamesWithTraits(hs.styledtext.fontTraits.fixedPitchFont)
     -- Monaco, Menlo-Regular, AppleBraille, AppleColorEmoji, MesloLGSNerdFontCompleteM-Regular
@@ -41,7 +41,7 @@ local function getBackgroundStyle()
     return {
         fillColor = black,
         strokeColor = transparent,
-        padding = hs.screen.mainScreen():frame().h,
+        padding = COUNTDOWN_LATEST_SCREEN:frame().h,
         atScreenEdge = 1,
     }
 end
